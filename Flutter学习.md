@@ -610,3 +610,26 @@ class FlutterLifeCycleState extends State<FlutterLifeCycle>
 ## 页面加载完成的回调：
 
 WidgetsBinding.instance.addPostFrameCallback
+
+## 监视页面的切换：
+
+1. AppStateLifeRecycle ；
+2. RouteAware；
+
+#### [RouteAware](https://blog.csdn.net/sinat_17775997/article/details/106417967)
+
+经常性的，我们需要监视页面的切换，用以在合适的时候对控件进行动画暂停或者资源释放。
+
+注：
+
+1. <u>路由观察者添加订阅与取消订阅必须成对出现；</u>
+2. <u>一些对象在使用后一定要记得及时释放资源。</u>
+
+```dart
+///假如有3个页面，分别是A、B、C，跳转逻辑由A->B->C，而RouteAware使用with混淆在B中。
+didPopNext：在C页面关闭后，B页面调起该方法；
+didPush: 当由A打开B页面时，B页面调起该方法；
+didPop: 当B页面关闭时，B页面调起该方法；
+didPushNext: 当从B页面打开C页面时，该方法被调起
+```
+
