@@ -2105,3 +2105,6 @@ class _PullDownRefreshState<T> extends State<PullDownRefresh<T>> {
 
 ```
 
+## [IntrinsicHeight](http://laomengit.com/flutter/widgets/IntrinsicHeight.html)
+
+将其子控件调整为该子控件的固有高度，举个例子来说，Row中有3个子控件，其中只有一个有高度，默认情况下剩余2个控件将会充满父组件，而使用IntrinsicHeight控件，则3个子控件的高度一致。

@@ -633,3 +633,29 @@ didPop: 当B页面关闭时，B页面调起该方法；
 didPushNext: 当从B页面打开C页面时，该方法被调起
 ```
 
+## 关于Future的执行
+
+```dart
+void main() {
+  Test t = Test();
+  t.testFuture().then((value) {
+    print("结果是：=$value");
+  });
+}
+
+class Test {
+  Future<String> testFuture() => Future.delayed(Duration(seconds: 2), () {
+        print("输出");
+        return "hahah";
+      }).then((value) {
+        print("输出结束");
+        return value;
+      });
+}
+
+// 结果:
+// 1.输出
+// 2.输出结束
+// 3.结果是：=hahah
+```
+
