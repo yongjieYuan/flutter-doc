@@ -2108,3 +2108,100 @@ class _PullDownRefreshState<T> extends State<PullDownRefresh<T>> {
 ## [IntrinsicHeight](http://laomengit.com/flutter/widgets/IntrinsicHeight.html)
 
 将其子控件调整为该子控件的固有高度，举个例子来说，Row中有3个子控件，其中只有一个有高度，默认情况下剩余2个控件将会充满父组件，而使用IntrinsicHeight控件，则3个子控件的高度一致。
+
+## 文字折叠
+
+```dart
+class TextWrapper extends StatefulWidget {
+  const TextWrapper(this.text, {Key? key}) : super(key: key);
+
+  final String text;
+
+  @override
+  State<TextWrapper> createState() => _TextWrapperState();
+}
+
+class _TextWrapperState extends State<TextWrapper>
+    with TickerProviderStateMixin {
+  bool isExpanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        AnimatedSize(
+          vsync: this,
+          duration: Duration(microseconds: 300),
+          child: ConstrainedBox(
+            constraints:
+                isExpanded ? BoxConstraints() : BoxConstraints(maxHeight: 70),
+            child: Text(
+              widget.text,
+              style: TextStyle(fontSize: 16),
+              softWrap: true,
+              overflow: TextOverflow.fade,
+            ),
+          ),
+        ),
+        isExpanded
+            ? Row(
+                // 使用 Row 将 btn 显示在右边，如果不使用 Row，btn 就会显示在左边
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  OutlinedButton(
+                      onPressed: () {
+                        setState(() {
+                          isExpanded = false;
+                        });
+                      },
+                      child: Text("隐藏"))
+                ],
+              )
+            : OutlinedButton(
+                onPressed: () {
+                  setState(() {
+                    isExpanded = true;
+                  });
+                },
+                child: Text("显示"))
+      ],
+    );
+  }
+}
+```
+
+
+
+```dart
+class TextWrapperPage extends StatelessWidget {
+  const TextWrapperPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("显示/折叠"),
+        centerTitle: true,
+        backgroundColor: Colors.blue,
+      ),
+      body: Padding(
+          padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                TextWrapper(
+                    "【摘要】 食品安全问题关系国计民生,一直是社会各界广泛关注的焦点。基于政策法规、主流期刊、权威媒体的三维视角,首先从\"是什么\"的角度对改革开放四十年以来我国食品安全问题关注重点的变化进行了系统梳理,总体上,我国食品安全问题关注重点的变化轨迹可描绘为\"食品数量安全→食品数量和卫生安全→食品质量安全→食品质量和营养安全\";其次进一步从\"为什么\"的角度剖析不同历史阶段我国食品安全问题关注重点变迁的内在逻辑,揭示导致以上变化的主要驱动因素;最后总结改革开放以来我国食品安全领域的重要成就,指明我国食品安全问题的发展方向。 "),
+                Divider(
+                  height: 30,
+                ),
+                TextWrapper(
+                    "【摘要】 食品安全问题关系国计民生,一直是社会各界广泛关注的焦点。基于政策法规、主流期刊、权威媒体的三维视角,首先从\"是什么\"的角度对改革开放四十年以来我国食品安全问题关注重点的变化进行了系统梳理,总体上,我国食品安全问题关注重点的变化轨迹可描绘为\"食品数量安全→食品数量和卫生安全→食品质量安全→食品质量和营养安全\";其次进一步从\"为什么\"的角度剖析不同历史阶段我国食品安全问题关注重点变迁的内在逻辑,揭示导致以上变化的主要驱动因素;最后总结改革开放以来我国食品安全领域的重要成就,指明我国食品安全问题的发展方向。 "),
+              ],
+            ),
+          )),
+    );
+  }
+}
+```
+
