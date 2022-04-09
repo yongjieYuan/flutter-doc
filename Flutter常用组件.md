@@ -2204,4 +2204,18 @@ class TextWrapperPage extends StatelessWidget {
   }
 }
 ```
+## 58.简单的单例模式写法
+```dart
+class TestEventBust {
+  static TestEventBust _instance = TestEventBust._init();
+  /// 命名构造函数
+  TestEventBust._init();
+  EventBus _eventBus = EventBus();
+  EventBus get bus{
+    return _eventBus;
+  }
+  /// 工厂构造函数
+  factory TestEventBust() => _instance;
+}
+```
 
