@@ -1958,6 +1958,8 @@ RichText(
 
 ## 53.聚焦
 
+关于焦点事件：https://www.freesion.com/article/4272635917/
+
 ```dart
 ///输入框的焦点
 FocusNode _focusNode = FocusNode(); 
@@ -2219,3 +2221,67 @@ class TestEventBust {
 }
 ```
 
+## 50.BackdropFilter高斯模糊/毛玻璃效果
+Flutter自带的一个ui组件。
+
+注意点：
+官方文档：The filter will be applied to all the area within its parent or ancestor widget's clip. If there's no clip, the filter will be applied to the full screen.
+
+译：过滤器将应用于其父控件或祖先控件剪辑中的所有区域。如果没有剪辑，过滤器将应用于全屏。
+
+```dart
+Stack(
+  fit: StackFit.expand,
+  children: <Widget>[
+    Text('0' * 10000),
+    Center(
+      child: ClipRect(  // <-- clips to the 200x200 [Container] below
+        child: BackdropFilter(
+          filter: ui.ImageFilter.blur(
+            sigmaX: 5.0,
+            sigmaY: 5.0,
+          ),
+          child: Container(
+            alignment: Alignment.center,
+            width: 200.0,
+            height: 200.0,
+            child: const Text('Hello World'),
+          ),
+        ),
+      ),
+    ),
+  ],
+)
+```
+
+## 51.显示SVG格式的Flutter 组件：flutter_svg 
+```dart
+ListView.builder(
+           shrinkWrap: true,
+             scrollDirection: Axis.vertical,
+             itemCount: countries.length,
+             physics: ScrollPhysics(),
+             itemBuilder: (context, index){
+               final Widget networkSvg = SvgPicture.network(
+                   '${countries[index].flag}',
+                   fit: BoxFit.fill,
+                   semanticsLabel: 'A shark?!',
+                   placeholderBuilder: (BuildContext context) => Container(
+                       padding: const EdgeInsets.all(30.0),
+                       child: const CircularProgressIndicator(
+                         backgroundColor: Colors.redAccent,
+                       )),);
+               return
+                 Column(
+                   children: [
+                     ListTile(
+                       title: Text('${countries[index].name}'),
+                       leading: CircleAvatar(
+                         backgroundColor: Colors.white,
+                         child: networkSvg,
+                       ),
+                     )
+                   ],
+                 );
+             });
+```
