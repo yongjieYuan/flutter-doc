@@ -659,3 +659,16 @@ class Test {
 // 3.结果是：=hahah
 ```
 
+## 使用Xocde调试较新系统的真机时
+
+出现的问题：
+Failed to prepare device for development
+
+解决办法：
+
+https://github.com/filsv/iPhoneOSDeviceSupport
+
+找到对应iPhone系统版本的导进去，重启Xcode就可以了
+
+
+
