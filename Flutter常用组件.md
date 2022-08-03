@@ -101,8 +101,6 @@ ElevatedButton(
    bool result = await showDialog(context: context, builder: (context) => CustomDialog('确定退出紫鲸书苑？'));
    ```
 
-   
-
 2. 自定义的对话框
 
    ```dart
@@ -166,8 +164,6 @@ ElevatedButton(
            ),
          );
    ```
-
-   
 
 ## 6.圆角按钮
 
@@ -257,8 +253,6 @@ TextFormField(
                       ),
                     )
 ```
-
-
 
 ```
                   separatorBuilder: (BuildContext context, int index){
@@ -423,9 +417,9 @@ boxShadow: [
 
 相关链接：
 
-https://blog.csdn.net/mengks1987/article/details/104580596
+<https://blog.csdn.net/mengks1987/article/details/104580596>
 
-https://segmentfault.com/a/1190000020205762
+<https://segmentfault.com/a/1190000020205762>
 
 ## 19.ListWheelScrollView.useDelegate
 
@@ -494,9 +488,7 @@ Column(
 
 ## 22.flutter textformfield失去焦点
 
-https://www.cnblogs.com/lude1994/p/14218014.html
-
-
+<https://www.cnblogs.com/lude1994/p/14218014.html>
 
 ```dart
 Text('Exhaust Fan 1')
@@ -589,7 +581,7 @@ StaggeredGridView.countBuilder(
 
 ## 25.解决基线对齐
 
-1. 
+1.
 
 ```dart
 Row(
@@ -648,7 +640,7 @@ final cropKey = GlobalKey<CropState>();
 
 ```dart
 /// ----------------------------主要逻辑----------------------------
-final ImagePicker _picker = ImagePicker();			
+final ImagePicker _picker = ImagePicker();   
 XFile? image; /// 定义图片类型变量
               bool result = await ShowModal.showText(
                   context,
@@ -667,8 +659,6 @@ XFile? image; /// 定义图片类型变量
                 print('path: ${image.path}');
               }
 ```
-
-
 
 ## 28. flutter_blue
 
@@ -836,7 +826,7 @@ class CommonRegular {
 }
 ```
 
-## 31.关于 ?.
+## 31.关于 ?
 
 ```dart
 slide[index]?.image != null  // ?. 如果slide[index]为null，则前半部分都为null
@@ -1133,7 +1123,7 @@ Container(
         print('更新失败，请稍后再试');
       }
     }
-  }	
+  } 
 
 
 ///api--版本更新检查
@@ -1954,11 +1944,9 @@ RichText(
 
 ## 52.[打开google应用的相关api](https://developers.google.com/maps/documentation/urls/get-started?hl=zh-CN)
 
-
-
 ## 53.聚焦
 
-关于焦点事件：https://www.freesion.com/article/4272635917/
+关于焦点事件：<https://www.freesion.com/article/4272635917/>
 
 ```dart
 ///输入框的焦点
@@ -2173,8 +2161,6 @@ class _TextWrapperState extends State<TextWrapper>
 }
 ```
 
-
-
 ```dart
 class TextWrapperPage extends StatelessWidget {
   const TextWrapperPage({Key? key}) : super(key: key);
@@ -2206,7 +2192,9 @@ class TextWrapperPage extends StatelessWidget {
   }
 }
 ```
+
 ## 58.简单的单例模式写法
+
 ```dart
 class TestEventBust {
   static TestEventBust _instance = TestEventBust._init();
@@ -2222,6 +2210,7 @@ class TestEventBust {
 ```
 
 ## 50.BackdropFilter高斯模糊/毛玻璃效果
+
 Flutter自带的一个ui组件。
 
 注意点：
@@ -2254,7 +2243,8 @@ Stack(
 )
 ```
 
-## 51.显示SVG格式的Flutter 组件：flutter_svg 
+## 51.显示SVG格式的Flutter 组件：flutter_svg
+
 ```dart
 ListView.builder(
            shrinkWrap: true,
@@ -2284,4 +2274,64 @@ ListView.builder(
                    ],
                  );
              });
+```
+## Flutter shape
+
+新了解：shapeDecoration
+
+[关于形状](https://blog.csdn.net/chenlove1/article/details/83627831)
+
+
+# 通过屏幕密度选择对应尺寸的图片
+
+```dart
+import 'dart:ui';
+
+import 'package:chili/chili.dart';
+import 'package:flutter/material.dart';
+
+import 'main_screen.dart';
+
+class IntroScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    double dpi = MediaQueryData.fromWindow(window).devicePixelRatio; //屏幕密度
+    String prefix = '';
+    final imgWidth = MediaQuery.of(context).size.width;
+    if (dpi < 1.5) {
+      prefix = "assets/intro/small";
+    } else if (dpi < 2) {
+      prefix = "assets/intro/medium";
+    } else {
+      prefix = "assets/intro/large";
+    }
+    List<Widget> pages = [
+      Image.asset(
+        '$prefix/1.png',
+        fit: BoxFit.fill,
+      ),
+      Image.asset(
+        '$prefix/2.png',
+        fit: BoxFit.fill,
+      ),
+      Image.asset(
+        '$prefix/3.png',
+        fit: BoxFit.fill,
+      ),
+      Image.asset(
+        '$prefix/4.png',
+        fit: BoxFit.fill,
+      ),
+    ];
+    return Introduction(
+      onSkip: () {
+        Nav.pushReplacement((context) => MainScreen());
+      },
+      pages: pages,
+      next: Text('Next'),
+      skip: Text('Skip'),
+    );
+  }
+}
+
 ```

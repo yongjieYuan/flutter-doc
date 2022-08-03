@@ -672,3 +672,109 @@ https://github.com/filsv/iPhoneOSDeviceSupport
 
 
 
+
+## StreamBuilder实战
+
+```dart
+//     StreamBuilder<List<V2TimGroupMemberFullInfo?>>(
+  //   initialData: memberListValue.value,
+  //   stream: Stream.periodic(Duration(seconds: 3)).asyncMap((event) => getMemberList()),
+  //   builder: (BuildContext context, AsyncSnapshot<List<V2TimGroupMemberFullInfo?>> snapshot) {
+  //     switch (snapshot.connectionState) {
+  //       case ConnectionState.waiting:
+  //         return Center(child: CircularProgressIndicator());
+  //       default:
+  //         if (snapshot.hasError) {
+  //           return Center(child: Text('Some error occurred!'));
+  //         } else {
+  //           return SizedBox(
+  //             height: 423.px,
+  //             child: ListView.separated(
+  //                 separatorBuilder: (context, index) => SizedBox(
+  //                   height: 10,
+  //                 ),
+  //                 padding: EdgeInsets.zero,
+  //                 itemCount: snapshot.data?.length ?? 0,
+  //                 itemBuilder: (context, index) {
+  //                   V2TimGroupMemberFullInfo? member = snapshot.data![index];
+  //                   return Container(
+  //                     padding: EdgeInsets.all(10),
+  //                     decoration: BoxDecoration(
+  //                       color: Colors.white,
+  //                       borderRadius: BorderRadius.circular(8),
+  //                     ),
+  //                     child: Row(
+  //                       children: [
+  //                         Container(
+  //                           width: 30,
+  //                           height: 30,
+  //                           child: ClipOval(
+  //                               child: MyNetworkImage(
+  //                                 imageUrl:
+  //                                 '${member?.faceUrl}',
+  //                                 width: 30.0,
+  //                                 height: 30.0,
+  //                                 boxfit: BoxFit.cover,
+  //                                 errorWidget: Image.asset('logo'.webp),
+  //                               )),
+  //                         ),
+  //                         SizedBox(width: 10),
+  //                         Text(
+  //                           '${member?.nickName}',
+  //                           style: TextStyle(
+  //                             fontSize: 14,
+  //                             color: Color(0xFF292139),
+  //                             fontWeight: FontWeight.w500,
+  //                           ),
+  //                         ),
+  //                         Expanded(child: SizedBox()),
+  //                         Image.asset(
+  //                           'icon_common_more1'.webp,
+  //                           width: 30,
+  //                           height: 30,
+  //                         ),
+  //                       ],
+  //                     ),
+  //                   );
+  //                 }),
+  //           );
+  //         }
+  //     }
+  //   },
+  // );
+```
+
+## Flutter监听前后台切换事件
+```dart
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
+	@override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+  }
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print("-didChangeAppLifecycleState-" + state.toString());
+    switch (state) {
+      case AppLifecycleState.inactive: // 处于这种状态的应用程序应该假设它们可能在任何时候暂停。
+        break;
+      case AppLifecycleState.resumed: //从后台切换前台，界面可见
+        break;
+      case AppLifecycleState.paused: // 界面不可见，后台
+        break;
+      case AppLifecycleState.detached: // APP结束时调用
+        break;
+    }
+  }
+   @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+}
+
+```
