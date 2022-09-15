@@ -2335,3 +2335,33 @@ class IntroScreen extends StatelessWidget {
 }
 
 ```
+
+```dart
+  static init() {
+    print("当前的屏幕密度为:$dpi");
+    if (platform == 1) {
+      print("当前设备为Android");
+      postfix = ".png";
+      if (dpi < 1) {
+        basePath = Local_Icon_prefix + "android/mdpi/";
+      } else if (dpi < 1.5) {
+        basePath = Local_Icon_prefix + "android/hdpi/";
+      } else if (dpi < 2) {
+        basePath = Local_Icon_prefix + "android/xhdpi/";
+      } else if (dpi < 3) {
+        basePath = Local_Icon_prefix + "android/xxhdpi/";
+      } else {
+        basePath = Local_Icon_prefix + "android/xxxhdpi/";
+      }
+    } else {
+      basePath = Local_Icon_prefix + "ios/";
+      if (dpi < 2.5) {
+        postfix = "@2x.png";
+      } else {
+        postfix = "@3x.png";
+      }
+    }
+    print(basePath);
+    return basePath;
+  }
+```
