@@ -1,0 +1,579 @@
+2022/6/6
+
+1.stream :
+
+stream.sink.add
+stream.broadcast
+
+
+2.flutter 单例模式
+
+3.关于showModalBottomSheet，
+关于showModalBottomSheet的shape属性：
+https://juejin.cn/post/6844904052044595214
+https://blog.wangruofeng007.com/posts/c5552f91/
+
+4.url_launcher
+
+现在的url_launcher的方法有变动，传入的是Uri
+flutter唤起各个地图的方法：
+https://blog.csdn.net/haha223545/article/details/105274114
+
+
+5.唤起高德地图和百度地图的URI
+
+
+6.高德地图打包，android需要混淆，release包的地图会奔溃
+
+7.支付宝集成
+
+8.蓝牙打包出来有问题：https://stackoverflow.com/questions/71291815/flutter-blue-plus-is-not-working-on-release-mode
+
+
+2022/6/7
+1.google 应用内支付
+
+	https://www.youtube.com/watch?v=h-jOMh2KXTA
+
+2.Flutter 项目运行在vivo真机上面无法调试：
+https://stackoverflow.com/questions/67831657/flutter-project-debugging-is-not-run-in-my-vivo-phone
+Flutter project debugging is not Run in my vivo phone
+
+
+3.Flutter 
+内购：
+1.https://blog.codemagic.io/understanding-in-app-purchase-apis-in-flutter/
+2.https://juejin.cn/post/6993346872232394789
+
+
+2022/6/8
+1.配置了谷歌内购商品；
+
+2.苹果内购应该也是需要让客户先配置账户；
+https://www.jianshu.com/p/72748db72a77
+
+3.娃娃机项目授权页面布局；
+
+4.ScrollPhysics：https://juejin.cn/post/6844903955584172039
+
+5.AnimatedSwitcher
+https://book.flutterchina.club/chapter9/animated_switcher.html#_9-6-1-animatedswitcher
+
+
+2022/6/9
+
+1.macos 常用命令，常用快捷键
+
+2.解决叮当漫步在谷歌手机上“软件安装包解析失败”的问题。运行项目报错：
+
+Duplicate class com.amap.api.fence.DistrictItem found in modules jetified-3dmap-9.3.0 (com.amap.api:3dmap:9.3.0) and jetified-location-6.1.0 (com.amap.api:location:6.1.0)
+
+解决办法：
+您好，麻烦您去掉定位SDK，现在地图是地图和定位的和包 给您带来的不便请您谅解。
+
+3.android 12无法安装：
+https://stackoverflow.com/questions/70333565/targeting-s-version-31-and-above-requires-that-an-explicit-value-for-android
+https://medium.com/androiddevelopers/lets-be-explicit-about-our-intent-filters-c5dbe2dbdce0
+https://zhuanlan.zhihu.com/p/384976601
+
+4.苹果证书：
+不受信任的解决办法：https://www.jianshu.com/p/af6acf3cd484
+
+
+2022/6/10
+
+1.SKU
+
+苹果对SKU没有特别的要求，只要不和其它APP的SKU冲突就行。
+通常可以用app的名字拼音或英文名称做为SKU，以方便自己记。
+
+2022/6/11
+1.如何实现Flutter内部阴影
+
+2022/6/12
+1.实现了flutter内阴影（曲线救国）
+
+2. Container渐变:https://www.jianshu.com/p/d78d7e5db07f
+
+3.customscrollview(需要学习滚动的相关知识)
+
+
+
+2022/6/14
+
+1.ScrollConfiguration
+
+https://juejin.cn/post/6844903955584172039
+
+2.appbar不占位置：
+
+Scaffold属性：extendBodyBehindAppBar: true,
+
+
+2022/6/15
+
+1.
+	Ailibi 项目：ios一直无法编成功。由于项目选用的im_flutter_sdk版本过老，本身这个SDK是有问题的。
+	解决办法：移除项目的armv7
+
+	https://github.com/arcticfox1919/flutter-scankit/issues/13
+	
+	在xcode上，选择buildsetting一栏，选择architecture，runner都选择arm64。也就是打包的时候不编译armv7的了，有些SDK是有做arm64和armv7，有些是只做了arm64，未来应该都是arm64的吧。
+	
+	具体查看iPhone的指令集，可以上网查找看看，像armv7,armv7s都是老ios的了
+
+	xcode12或者是ios11默认都是arm64的了。
+
+2. 艾力彼项目的im_flutter_sdk，分支是dev_old的版本，代码有问题，对照其他版本，修改了报错的那几个地方，报错的貌似都用不到呀！所以应该问题不大   
+
+
+3.git stash/git 
+
+4.Flutter路由
+
+5.	provider,
+	PreferredSizeWidget: 自定义appbar
+
+
+2022/6/16
+
+1.Flutter跳转到App Store
+
+2.什么应用需要做ios内购
+
+3.关联远程git分支：https://www.liaoxuefeng.com/wiki/896043488029600/900375748016320
+
+
+2022/6/17
+
+1.flutter 字体
+2.flutter web;性能还是不行，flutter开发app是跨端框架中最接近原生的。
+
+2022/6/18
+
+1.学习provider
+
+2.A borderRadius can only be given for a uniform Border.错误的原因也非常明确，A borderRadius can only be given for uniform borders.
+
+中文意思就是：边界半径只能用于统一的边界。
+
+所以推测是不是给定的border不统一呢，所以做如下修改：
+
+3.当碰到一个文本能够根据自己的文本内容实现宽度自适应，可以尝试在文本组件外加一个stack
+
+
+
+2022/6/20
+
+1.可根据key获取state中的变量和方法，
+
+  GlobalKey _barrageKey = GlobalKey<BarrageState>();
+  由于这样写，导致_barrageKey.currentState无法获取到相关方法（编译时）；
+  改为：
+
+  GlobalKey<BarrageState> _barrageKey = GlobalKey<BarrageState>();
+
+2.如果想让一个组件中的子元素的文字样式统一，可以使用DefaultTextStyle
+
+  
+3.chili框架中存在屏幕适配比的问题：
+如果过早的去初始化屏幕适配的类，可能会造成mediaQuery.size.width 获取的单位为0
+
+存在一种可能是：Flutter打出生产环境下的包更小，运行更快，从而无法快速去获取到window信息
+ PixelAdapter.init（）
+
+
+2022/7/1
+
+1.Flutter 集成firebase_messaging
+
+https://juejin.cn/post/6903787171170222093
+
+2022/7/4
+
+关于改造tabbar底部标签栏：
+https://stackoverflow.com/questions/57889326/how-to-add-a-circular-dot-as-an-indicator-in-flutter-tabs
+
+
+2022/7/8
+
+探究flutter_sound的使用
+
+发现flutter_inappwebview的功能非常丰富
+
+2022/7/9
+
+1.解决：No version of NDK matched the requested version 20.0.5594570. Versions available locally: 21.0.6113669
+
+2.通过android studio的setting，在选择sdk tools,去下载对应的ndk版本
+
+3.简略了解dio插件，非常强大的网络请求插件。
+
+dio文件下载：https://juejin.cn/post/6988498436018405407
+
+4.解决flutter_inappwebview 使用时，打开手机文件闪退的问题：
+参考了这篇文章：
+https://stackoverflow.com/questions/56598480/couldnt-find-meta-data-for-provider-with-authority
+实际的解决办法是，修改了targetSdkVersion 和compileSdkVersion
+
+5.解决：No toolchains found in the NDK toolchains folder for ABI with prefix: arm-linux-androideabi
+
+https://blog.51cto.com/u_14397532/4402320
+
+
+
+2022/7/10
+
+1.处理flutter_sound 老版本播放远程音频时报的错：
+
+V/MediaHTTPService(22521): MediaHTTPService(android.media.MediaHTTPService@998fbb2): Cookies: null
+V/MediaHTTPService(22521): makeHTTPConnection: CookieHandler (java.net.CookieManager@f4757fa) exists.
+V/MediaHTTPService(22521): makeHTTPConnection(android.media.MediaHTTPService@998fbb2): cookieHandler: java.net.CookieManager@f4757fa Cookies: null
+
+
+2.解决flutter_inappwebview在高系统Android版本中崩溃的问题：
+
+修改了buid.gradle 的依赖：
+
+implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+
+
+
+3.解决高德地图闪退的问题：
+
+   implementation('com.amap.api:3dmap:8.1.0')
+    // 引入高德定位（https://lbs.amap.com/api/android-location-sdk/changelog）
+    implementation('com.amap.api:location:5.6.0')
+
+由于现在高德地图（2022/7/10）将定位和地图合在一起，可能需要优化，较新的版本存在Flutter应用闪退的问题，所以还是用旧的稳定些
+
+
+2022/7/12
+
+1.查看pdf：native_pdf_view
+
+native_pdf_view插件是用PdfRenderer类实现的，本身不支持
+
+由于Android的webview不支持查看电子签章，最后使用打开h5方式实现。
+可能其他插件能支持，如腾讯浏览器内核x5 可以支持
+https://mp.weixin.qq.com/s/4QRmdWqU1Kq33M1O_m-4CA
+
+
+2. 检查插件或者项目的ktlin版本，项目根目录build.gradle ext.kotlin_version
+Error:Execution failed for task ':app:compileDebugKotlin'. > Compilation error. See log for more details
+
+2022/7/14
+
+1.flutter 项目首次碰到页面加载大量图片时（ios），程序崩溃，组件通过customscrollview进行动态加载并销毁，仍出现问题；
+
+2.
+
+2022/7/15
+
+1.Flutter Schema
+
+uni_links
+
+
+2.flutter截图
+RepaintBoundary 
+
+https://juejin.cn/post/7082189633903132680
+
+前台截图和后台截图，后台截图需要自己创建组件，相关链接：
+https://blog.csdn.net/naocan10211050/article/details/117479379
+
+截图插件：screenshot
+
+
+2022/7/18
+1.flutter_sound在ios上面录音时，回调的时长为0，解决办法是根据插件demo，使用audio_session等相关代码去配置，其他的不用设置什么，只要配好白名单
+
+
+2022/7/19
+
+1.解决古易app的运行问题，
+解决：No toolchains found in the NDK toolchains folder for ABI with prefix: arm-linux-androideabi
+添加了ndk:21.3625
+
+
+
+2022.7.22
+
+1.
+生效.gitnore
+git rm -r --cached .  #清除缓存
+git add . #重新trace file
+git commit -m "update .gitignore" #提交和注释
+git push origin master #可选，如果需要同步到remote上的话
+
+2.flutter_plugin_record插件的依赖资源不存在：
+com.github.adrielcafe:AndroidAudioConverter:0.0.8
+
+解决办法：
+
+下载到本地，该插件的依赖,通过本地引入：https://blog.csdn.net/sinat_31177681/article/details/119448953
+https://github.com/adrielcafe/AndroidAudioConverter/files/9052443/ffmpeg-android-java-2a627f6ecd.aar.zip
+
+
+
+2022/7/26
+
+1.有用 pull_to_refresh 的兄弟可以看一下， 昨天有个加载多图爆内存的问题 ，根据我的发现 SmartRefresher处理普通的列表用listview没有啥大问题，但是加载那种超多图的列表会爆内存  要把Listview换成CustomScrollView套SliverList，就没有啥问题了，，目前是这样，，再次感谢昨天各路大佬的帮助
+
+
+2022/7/27
+
+1.flutter蓝牙插件：
+
+  flutter_blue不更新了
+
+2.推荐使用：flutter_blue_plus，
+
+3.也可以试试flutter_reactive_ble 
+
+
+2022/7/28
+
+1.爱尚新佳ios端碰到过浏览器无法打开app的问题，今天物流也碰到过line在浏览器登录时无法打开app的问题，是因为没有配置iOS端的url scheme：
+https://juejin.cn/post/6844904185540902919
+
+2.line ios 登录使用通用链接：https://developers.line.biz/en/docs/ios-sdk/swift/universal-links-support/#ul-s2，
+
+ios端的line登录需要配置universallink（通用链接），如果没有配置的话(通用连接不合法)就使用scheme打开应用（官方推荐使用通用链接），所以使用line_sdk的时候，初始化时要传入universallink
+
+
+2022/8/4
+
+关于手机上设置红点：
+1、图标：https://go48pg.yuque.com/docs/share/4fb28698-98b3-4fde-9a20-b5ae212ed809?# 《通知栏右侧图标/大图片，小图标问题处理》
+
+2、https://blog.csdn.net/qq_39389024/article/details/112848918
+
+3、https://docs.jiguang.cn/jpush/practice/set_badge
+
+4、https://community.jiguang.cn/article/123640
+
+5、https://community.jiguang.cn/article/139240
+
+
+关于abi:
+https://blog.csdn.net/afei__/article/details/81272251`
+
+
+2022/8/6
+
+1.当我尝试写一个单例的bloc，即stream，在另一个页面中定义一个变量subscription去接受单例的bloc的事件，当这个页面销毁后，同样也取消了subscription的监听，这样并不影响后续的（其他的）监听，不会影响单例bloc
+
+2. 大端小端
+
+
+2022/8/8
+
+1.当我使用混淆时，在buildType 的release 中加入了这句话：useProguard true，项目无法运行，当我注释掉这句话就可以了，
+
+貌似高版本的gradle，默认开启了R8（或者说默认开启了useProguard true）
+
+参考：
+
+https://androiderrors.com/whats-the-difference-between-minifyenabled-and-useproguard-in-the-android-plugin-for-gradle/
+
+
+You don’t need useProguard true anymore.
+
+Code shrinking with R8 is enabled by default when you set the minifyEnabled property to true.
+
+When you build your project using Android Gradle plugin 3.4.0 or higher, the plugin no longer uses ProGuard to perform compile-time code optimization. Instead, the plugin works with the R8 compiler to handle the tasks according to the official document.
+
+If you want to use ProGuard instead of R8. Add this line in the gradle.properties file
+
+ android.enableR8=false
+
+
+2022/8/12
+
+
+
+爱上新家：为了解决微信分享闪退的问题，尝试升级了微信插件版本（fluwx）,由于升级后需要更高版本的gradle，因此tobias（支付宝）也升级了，升级后需要升级kotlin版本，由于gradle和kotlin版本升的太高，导致flutter依赖注入都无法完成的问题，最后gradle版本不改（3.5.4）,将kotlin版本调至1.4.0，相当于刚好满足，项目能运行。
+
+
+2022/8/14
+
+https://blog.csdn.net/shulianghan/article/details/113700234
+
+使用for 循环遍历map：
+    // 2 . 通过 for 循环遍历 Map 集合
+    // 调用 Map 对象的 keys 成员 , 返回一个由 键 Key 组成的数组
+    for (var key in president.keys){
+      print("for 循环遍历 : Key : $key , Value : ${president[key]}");
+    }
+
+2022/8/16
+
+1.遇到报错: Cannot add to a fixed-length list
+/*注意*/
+List list_2 = new List(2); // 固定长度
+list_2.add('1'); // 报错 报错信息 Cannot add to a fixed-length list
+
+
+2.一个16进制的数占多少字节:
+https://blog.csdn.net/Dontla/article/details/103763117
+
+2022.8.18
+
+1.如何处理flutter app只退出到桌面：
+
+kotlin:
+
+private val CHANNEL = "android/back/desktop"
+    override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
+        registerWith(flutterEngine);
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { methodCall, result ->
+            if (methodCall.method == "backDesktop") {
+                result.success(true)
+                moveTaskToBack(false)
+            }
+        }
+    }
+
+
+import 'package:flutter/services.dart';
+
+class AndroidBackDesktop {
+  //通讯名称，回到手机桌面
+  static const String CHANNEL = "android/back/desktop";
+  //设置回退到手机桌面事件
+  static const String eventBackDesktop = "backDesktop";
+  //设置回退到手机桌面方法
+  static Future<bool> backToDesktop() async {
+    final platform = MethodChannel(CHANNEL);
+    //通知安卓返回到手机桌面
+    try {
+      var res = await platform.invokeMethod(eventBackDesktop);
+    } on PlatformException catch (e) {
+      print("通信失败，设置回退到安卓手机桌面失败");
+      print(e.toString());
+    }
+    return Future.value(false);
+  }
+}
+
+作者：锋行天下
+链接：https://juejin.cn/post/7012096689594974244
+来源：稀土掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+2022/8/22
+
+flutter hero动画
+
+
+A widget that marks its child as being a candidate for hero animations.
+
+When a PageRoute is pushed or popped with the Navigator, the entire screen's content is replaced. An old route disappears and a new route appears. If there's a common visual feature on both routes then it can be helpful for orienting the user for the feature to physically move from one page to the other during the routes' transition. Such an animation is called a hero animation. The hero widgets "fly" in the Navigator's overlay during the transition and while they're in-flight they're, by default, not shown in their original locations in the old and new routes.
+
+To label a widget as such a feature, wrap it in a Hero widget. When navigation happens, the Hero widgets on each route are identified by the HeroController. For each pair of Hero widgets that have the same tag, a hero animation is triggered.
+
+If a Hero is already in flight when navigation occurs, its flight animation will be redirected to its new destination. The widget shown in-flight during the transition is, by default, the destination route's Hero's child.
+
+For a Hero animation to trigger, the Hero has to exist on the very first frame of the new page's animation.
+
+Routes must not contain more than one Hero for each tag.
+
+
+2022/8/23
+设置状态栏
+systemOverlayStyle
+
+https://www.jianshu.com/p/84a103873b27
+
+2022/8/24
+
+futurebuilder:
+
+https://juejin.cn/post/6844903906766487566
+
+
+
+2022/8/29
+
+低版本的flutter 1.22.4集成微信sdk Fluwx 2.6，在Android 12使用相关方法时报错。
+
+参考方法：
+
+
+https://github.com/OpenFlutter/fluwx/issues/293
+
+https://developers.weixin.qq.com/doc/oplatform/Mobile_App/Access_Guide/Android.html#jump2
+
+
+2022/8/30
+
+屏幕适配那里，没有尺寸是因为初始化时window信息都是赋值为0，随着系统读取到了屏幕信息之后，会通知到flutter framework，具体看代码会有个回调，MediaQuery就是如此设计的，获取到实际屏幕大小之后，通知子树刷新。
+debug和release的框架初始化流程是不同的，所以就有了debug正常，但release不正常，其中一种解决方式就是在main函数里加上一个回调去监听屏幕尺寸变化，再进行初始化屏幕适配工具、runApp等操作
+void main() {
+if (window.physicalSize.isEmpty) {
+window.onMetricsChanged = () {
+if (!window.physicalSize.isEmpty) {
+window.onMetricsChanged = null;
+runApp(MyApp());
+}
+};
+} else {
+runApp(MyApp());
+}
+}
+
+
+2022/9/7
+
+应用宝 无法获取签名信息 360 解析证书为空!
+
+https://blog.csdn.net/mp624183768/article/details/125093440
+
+谷歌应用内购：https://codelabs.developers.google.com/codelabs/flutter-in-app-purchases#2
+
+
+
+2022/9/14
+ios开启http访问
+https://www.jianshu.com/p/d6754fe1d7f1
+
+
+
+2022/9/16
+类似电话簿右边的字幕排序查询
+插件：azlistview
+
+
+2022/9/16
+flutter支付
+flutter_braintree 2.3.1
+
+
+2022/9/26
+
+项目：爱尚新佳
+
+问题：有关定位无法获取，地图闪退的问题
+
+相关文档https://pub.dev/packages/permission_handler
+
+机型：ios
+
+The locationAlways permission can not be requested directly, the user has to request the locationWhenInUse permission first. Accepting this permission by clicking on the 'Allow While Using App' gives the user the possibility to request the locationAlways permission. This will then bring up another permission popup asking you to Keep Only While Using or to Change To Always Allow.
+
+
+出现无法请求permission.location.request( );
+原因是因为没有加Privacy - Location Always and When In Use Usage Description
+
+最好是都加上下面三个
+Privacy - Location Always and When In Use Usage Description
+
+Privacy - Location When In Use Usage Description
+
+Privacy - Location Always Usage Description
+
+
+地图闪退：原因是定位权限不通过
