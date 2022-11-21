@@ -259,3 +259,24 @@ class LocationBloc {
 }
 
 ```
+
+文章：https://cloud.tencent.com/developer/article/1511980
+
+  https://cloud.tencent.com/developer/article/1610790
+```dart
+class StateSubject {
+  static final StateSubject _instance = StateSubject._();
+
+  factory StateSubject() => StateSubject._instance;
+
+  StreamController<int> streamController;
+
+  StateSubject._() {
+    streamController = StreamController.broadcast();
+  }
+
+  void update(int num) {
+    streamController.sink.add(num);
+  }
+}
+```
