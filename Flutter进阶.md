@@ -102,7 +102,7 @@ class DataBloc {
 
   static final DataBloc _instance = DataBloc._init();
 
-  ///定义一个Controller
+   ///定义一个Controller
   StreamController<String> _dataController = StreamController.broadcast(
     onListen: (){
       print('databloc listen');
