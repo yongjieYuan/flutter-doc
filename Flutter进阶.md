@@ -280,3 +280,17 @@ class StateSubject {
   }
 }
 ```
+
+# Flutter ios 设置中文语言
+1、先把手机的语言模式设置成简体中文
+
+2、在Info.Plist里面把Localization native development region字段修改成China
+
+3、在Info.Plist里面添加字段Localized resources can be mixed（Boolean）值为YES
+
+方法都设置好了后，打开相机调用的还是英文
+
+还要在项目的PROJECT -> Info -> Localizations中添加语言包才可以
+————————————————
+版权声明：本文为CSDN博主「moon清泉」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/MoonAndroid/article/details/121625582
